@@ -1,0 +1,37 @@
+<template>
+    <lightning-card
+        title="RecordFormDynamic"
+        icon-name="standard:contact"
+    >
+        <div class="slds-var-m-around_medium">
+
+            <template if:true={isFirstStep}>
+                <lightning-radio-group name="radioGroup"
+                    label="Record Type"
+                    options={recordTypes}
+                    value={selectedRecordTypeId}
+                    type="radio">
+                </lightning-radio-group>
+            </template>
+            <template if:true={isSecondStep}>
+                <lightning-record-form
+                    object-api-name={objectApiName}
+                    record-id={recordId}
+                    layout-type ="Full"
+                    columns = "2"
+                    record-type-id={selectedRecordTypeId}
+                ></lightning-record-form>
+            </template>
+
+            <!-- Neutral variant (default) -->
+            <lightning-button data-name={currentCancelName} label="Cancel / Previous" title="Non-primary action" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+
+            <!-- Brand variant: Identifies the primary action in a group of buttons -->
+            <lightning-button data-name={currentSaveName} variant="brand" label="Next / Save" title="Primary action" onclick={handleNext} class="slds-m-left_x-small"></lightning-button>
+
+             
+
+        </div>
+
+    </lightning-card>
+</template>
