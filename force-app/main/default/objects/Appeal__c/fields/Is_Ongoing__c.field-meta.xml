@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Ongoing__c</fullName>
+    <externalId>false</externalId>
+    <formula>OR( 
+				ISBLANK(TEXT(Status__c)), 
+				AND(
+								ISPICKVAL(Status__c, &#39;Approved&#39;),
+								ISBLANK(TEXT(AppealResult__c))
+				)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Ongoing</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
