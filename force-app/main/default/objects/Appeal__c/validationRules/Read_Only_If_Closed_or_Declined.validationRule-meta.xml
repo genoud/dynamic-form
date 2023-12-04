@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Read_Only_If_Closed_or_Declined</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(
+            OR(ISPICkVAL(Status__c,&#39;Closed&#39;),ISPICkVAL(Status__c,&#39;Declined&#39;), ISPICkVAL(Status__c,&#39;Cancelled&#39;)) &amp;&amp; NOT(ISCHANGED(Status__c)), 
+            OR(
+                        ISCHANGED(AppealAdjudicationComment__c), 
+                        ISCHANGED(AppealComments__c),
+                        ISCHANGED(AppealResult__c),
+                        ISCHANGED(Opportunity__c),
+                        ISCHANGED(Case__c)   
+            ),     
+            false
+        )</errorConditionFormula>
+    <errorMessage>Closed Appeal is not editable</errorMessage>
+</ValidationRule>
